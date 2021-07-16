@@ -1,0 +1,22 @@
+var num=20;
+var name="MaheshMY";
+var val=true;
+num="MY";
+document.write("<h1>Welcome All!!</h1>");
+document.write("<h2>I am new to javascript</h2>");
+document.write("<p>Number value is "+num+"</p>");
+
+
+document.write("<p>Number value is "+num+"</p>");
+alert(name);
+
+var a=10;
+var b=20;
+var c=a+b;
+document.write("<p>Arithmetic Operator "+c+"</p>");
+var d="MY"+a+b;
+document.write("<p>Arithmetic Operator "+d+"</p>");
+
+var e=typeof(a);
+document.write("<p>Type of Operator "+e+"</p>");
+

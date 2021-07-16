@@ -1,0 +1,76 @@
+package com.mystore.online.Dao;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.mystore.online.Service.ProductServiceImpl;
+import com.mystore.online.model.ProductBean;
+import com.mystore.online.model.UpdateProduct;
+
+@Repository
+public class ProductDao {
+	
+	
+	private DataSource dataSource;
+private JdbcTemplate jdbcTemplate;
+	
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public int addData(ProductBean productBean)
+	{
+		String sql="insert into product values(?,?,?,?)";
+		int res=jdbcTemplate.update(sql, new Object[] {productBean.getId(),productBean.getItem(),productBean.getPrice(),productBean.getQuantity()} );
+		return res;
+	}
+	
+	public List<Map<String,Object>> getProduct()
+	{
+		String sql="select * from product";
+		return jdbcTemplate.queryForList(sql);
+	}
+	
+	public int updateData(int id, ProductBean productBean)
+	{
+		String sql="update product set item=?, price=? where id=?";
+		System.out.println("The value is "+ productBean.getItem());
+		int res= jdbcTemplate.update(sql, productBean.getItem(),productBean.getPrice(), productBean.getId());
+		 System.out.println(res + " data updated");
+		return res;
+	}
+	
+	public int deleteData(int id)
+	{
+		String sql="delete from product where id=?";
+		int res= jdbcTemplate.update(sql, id);
+		System.out.println(res + " data deleted");
+		return res;
+	}
+	
+	
+	  public int updateProducts(UpdateProduct updateProduct) { String
+	  sql="update product set price=? where id=?"; int res=jdbcTemplate.update(sql, updateProduct.getPrice(), updateProduct.getProductId());
+	  return res;
+	  }
+	  
+	  public void geTableName(String table_name)
+	  {
+		//  String sql="update product P Inner join update_product U on P.id=U.id set P.price=U.price   ";
+		// int res= jdbcTemplate.update(sql);
+		// System.out.println(res +" data updated");
+		// return res;
+		 System.out.println("called");
+	  }
+	 
+}

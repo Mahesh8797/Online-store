@@ -1,0 +1,50 @@
+package com.mystore.online.Dao;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.mystore.online.model.LoginBean;
+
+@Repository
+public class LoginDao {
+
+private DataSource dataSource;
+	
+	private JdbcTemplate jdbcTemplate;
+	
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public int doPost(LoginBean loginBean)
+	{
+		String sql="insert into login values(?,?)";
+		int res= jdbcTemplate.update(sql, new Object[] {loginBean.getEmail(), loginBean.getPass()});
+		return res;
+	}
+	
+	public List<Map<String,Object>> getEmails()
+	{
+		String sql="select email from register";
+		//return jdbcTemplate.queryForList(sql);		
+		return jdbcTemplate.queryForList(sql);
+		
+	}
+	
+	public boolean getEmails()
+	{
+		String sql="select email from register";
+		jdbcTemplate.queryForList(sql);
+		return true;
+	}
+}

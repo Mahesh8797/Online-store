@@ -1,0 +1,36 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ProvisionComp from './ProvisionComp';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+class Dashboard extends React.Component {
+	constructor()
+	{
+		super();
+		
+		this.state = { 
+	            tabIndex: 0 
+	        };
+	    }
+	    
+	    render() {
+	        const tabss=( 
+	            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}> 
+	        <TabList>	          
+	          <Tab>Provision</Tab>
+	          <Tab>Stationery</Tab>	          
+	        </TabList>	        
+	        <TabPanel><ProvisionComp/></TabPanel>
+	        <TabPanel>Hello </TabPanel>
+	        </Tabs>);
+	        return (
+	            <div>
+				<h1>Welcome to dashboard page</h1>
+	            {tabss}
+	           
+	            </div>
+	        );
+	    }
+}
+
+
+export default Dashboard;

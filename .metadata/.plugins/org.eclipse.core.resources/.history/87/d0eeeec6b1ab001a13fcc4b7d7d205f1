@@ -1,0 +1,12 @@
+<html>
+<body>
+<h1>Hello customer</h1>
+Result : ${result}
+${email } ${pass}
+ <a href="http://localhost:3000/Dashboard">Go to Dashboard</a> 
+ <% out.println("Valid user");
+ request.getRequestDispatcher("http://localhost:3000/Dashboard").forward(request, response);
+ 
+ %>
+</body>
+</html>

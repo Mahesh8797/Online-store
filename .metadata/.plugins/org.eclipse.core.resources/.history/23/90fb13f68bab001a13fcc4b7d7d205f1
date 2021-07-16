@@ -1,0 +1,8 @@
+<html>
+<body>
+<h1>Hello customer</h1>
+Result : ${result}
+${email } ${pass}
+ <a href="http://localhost:3000/Dashboard">Go to Dashboard</a> 
+</body>
+</html>

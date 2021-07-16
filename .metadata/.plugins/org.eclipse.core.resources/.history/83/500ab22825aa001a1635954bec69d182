@@ -1,0 +1,75 @@
+package com.mystore.online.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mystore.online.Dao.LoginDao;
+import com.mystore.online.model.LoginBean;
+
+@Service
+public class LoginServiceImpl {
+
+	@Autowired
+	LoginDao loginDao;
+	LoginBean loginBean;
+	List<Map<String,Object>>lists;
+	
+	LoginServiceImpl()
+	{
+	lists= loginDao.getEmails();
+	}
+	
+	public void doPos(LoginBean loginBean)
+	{
+		//boolean result= getEmaillist(loginBean);	
+		//return result;
+		int res =loginDao.doPost(loginBean);
+		System.out.println(res +" data inserted");		
+		//int res =loginDao.doPost(loginBean);
+		//System.out.println(res +" data inserted");
+		
+	}
+	
+	public boolean getEmaillist(LoginBean loginBean)
+	{
+		String val=loginBean.getEmail();
+		System.out.println(val);
+		List<Object> list=new ArrayList<Object>();
+	      for(Map<String,Object> i:lists){
+	          list.addAll(i.values());
+	      }
+				
+	     boolean result= list.contains(val);
+	     if(result)
+	     {
+	    	 int res =loginDao.doPost(loginBean);
+				System.out.println(res +" data inserted");				
+			//System.out.println(res);
+	     }
+	    
+	     return result;
+			/*
+			 * list.forEach(n->{
+			 * 
+			 * if(n.equals(val)) { int res =loginDao.doPost(loginBean);
+			 * System.out.println(res +" data inserted"); System.out.println(n);
+			 * 
+			 * } else { System.out.println("user is not registered please register first");
+			 * }} );
+			 */
+			//System.out.println(email);
+			//result=;	
+		/*
+		 * if(email.containsValue(val)) { System.out.println("Email id matches"); int
+		 * res =loginDao.doPost(loginBean); System.out.println(res +" data inserted"); }
+		 * else { System.out.println("user is not registered please register first"); }
+		 */
+		
+		//return true;
+	}
+	
+}
